@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    Look! | Delete Blog Post
+{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+    <h1 class="text-info col-md-8">Delete Post</h1>
+    <br>
+    <h3>Delete: {{ post.title }}</h3>
+    <br>
+
+    <div class="form-group">
+        <form action="" method="post">
+            {% csrf_token %}
+            <strong>Are you Sure?</strong>
+            <br>
+            <br>
+            <button class="btn btn-danger" >Delete Post</button>
+        </form>  
+    </div>
+<br>
+<br>
+{% else %}
+
+<h1>404 error</h1>
+
+{% endif %}
+{% else %}
+
+<h1>404 error</h1>
+
+{% endif %}
+{% endblock %}

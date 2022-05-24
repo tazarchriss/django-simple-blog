@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}
+    Look! | Timeline
+{% endblock %}
+{% block content %}
+
+    {% if category_posts %}
+    <h1 class="">{{cats}}</h1>
+
+   {% for post in category_posts %}
+   <ul>
+        <li>
+           <a href="{% url 'article-detail' post.pk %}"> {{post.title}} </a> - <small style="text-align:right;">{{post.author.first_name}} {{post.author.last_name}}</small> 
+           {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+           <a class="text-success" href="{% url 'update_post' post.pk %}">(Edit)</a> <a class="text-danger" href="{% url 'delete_post' post.pk %}">(Delete)</a> <br>
+            {% endif %}
+           {% endif %}
+           
+           <span class="badge badge-secondary" >{{post.category}}</span>
+           <br>
+        {{post.body | slice:":200" | safe}} 
+        </li>
+    
+    </ul>
+   {% endfor %}
+    {% else %}
+    <h2 class="text-danger">Sorry, this page doest not exist !</h2>
+
+    {% endif %}
+    
+{% endblock %}
