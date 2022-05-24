@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Look! | Timeline
+{% endblock %}
+{% block content %}
+    <h1 class="text-info">User Profile ...</h1>
+ 
+
+ <div class="card bio col-md-12 ">
+    <br>
+    <div class="row no-glutters " style="margin-top:5px;">
+    {% if page_user.profile_pic  %} 
+    <div class="col-md-3 float-left">
+        <img class="card-image " width="100%" height="80%" src="{{page_user.profile_pic.url }}" alt="">
+     </div>   
+    {% else %}
+    <div class="col-md-3 float-left">
+        <img class="card-image " width="100%" height="80%" src="{% static 'lblog/images/user.png' %}" alt="">
+       
+    </div>
+    {% endif%}
+   
+    <div class="card-body col-md-8 float-right">
+        <h5 class="text-info card-title">@{{page_user.user.first_name}} {{page_user.user.last_name}}</h5>
+        <p class="card-title"><small class="text-muted">
+         
+
+          {% if page_user.profile.website_url  %} 
+          |
+          <a href="
+           {{page_user.profile.website_url }}
+           ">Website</a> |
+          {% endif %}
+
+           {% if page_user.profile.facebook_url %}
+           <a href="{{page_user.profile.facebook_url }}">Facebook</a>|
+
+           {% endif %}
+
+           {% if page_user.profile.twitter_url %}
+           <a href="{{page_user.profile.twitter_url }}">Twitter</a> |
+           {% endif %}
+
+           {% if page_user.profile.instagram_url %}
+           <a href="{{page_user.profile.instagram_url }}">Instgram</a>|
+           {% endif %}
+
+           {% if page_user.profile.linkedin_url %}
+           <a href="{{page_user.profile.linkedin_url }}">Instgram</a>|
+           {% endif %}
+
+           </small></p>
+    <p class="card-text">
+        
+        {{page_user.bio}}
+    </p>
+    <p class="card-text"><small class="text-muted">Member since  {{page_user.user.date_joined}}</small></p>
+</div>
+</div>
+</div>
+<br>
+<a class="btn btn-secondary float-left" href="{% url 'home' %}">Back</a>
+    
+   
+{% endblock %}
+
+    <br>
+    <br>
+  

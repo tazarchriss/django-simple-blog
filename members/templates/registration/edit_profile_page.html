@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+    Look! | Edit Profile
+{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == profile.user.id %}
+    <h1 class="text-info col-md-8">Edit Profile Page...</h1>
+    <br>
+    <div class="form-group">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-secondary" >Update Profile Page</button>
+        </form>  
+    </div>
+
+    <script>
+        var name="{{user.id}}";
+        document.getElementById("elder").value=name;
+    </script>
+<br>
+<br>
+{% else %}
+
+<h1>404 error</h1>
+
+{% endif %}
+
+{% else %}
+
+<h1>404 error</h1>
+
+{% endif %}
+{% endblock %}
